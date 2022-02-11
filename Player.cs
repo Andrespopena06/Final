@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class Player : MonoBehaviour {
 
     NavMeshAgent agente;
+    [SerializeField] public Transform of;
     private Animator animator;
     private Vector3 movimiento;
     void Start()
@@ -17,7 +16,16 @@ public class Player : MonoBehaviour {
 
     void Update()
     {
+        transform.position = of.position;
         movimiento = agente.velocity;
+        if(Input.GetKey(KeyCode.UpArrow))
+            agente.SetDestination(of.position+Vector3.forward);
+        if(Input.GetKey(KeyCode.LeftArrow))
+            agente.SetDestination(of.position+Vector3.left);
+        if(Input.GetKey(KeyCode.RightArrow))
+            agente.SetDestination(of.position+Vector3.right);
+        if(Input.GetKey(KeyCode.DownArrow))
+            agente.SetDestination(of.position+Vector3.back);
         if (Input.GetMouseButtonDown(0))
         {
             Ray rayo = Camera.main.ScreenPointToRay(Input.mousePosition);
