@@ -4,7 +4,7 @@ using UnityEngine.AI;
 public class Player : MonoBehaviour {
 
     NavMeshAgent agente;
-    [SerializeField] public Transform of;
+    public Transform of;
     private Animator animator;
     private Vector3 movimiento;
     void Start()
@@ -12,6 +12,7 @@ public class Player : MonoBehaviour {
         //Capturamos el componente agente del jugador
         agente = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        of = GetComponent<Transform>();
     }
 
     void Update()
